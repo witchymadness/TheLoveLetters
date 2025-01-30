@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Confessions Wall</title>
+  <link rel="stylesheet" href="style2.css">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2&family=Pacifico&family=Satisfy&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>The Love Letters</h1>
+    </header>
+    <p>Confessions:</p>
+    <div class="entry-box">
+      <div id="confessionsList">
+        <!-- Confessions will be dynamically loaded here -->
+      </div>
+    </div>
+  </div>
+  <script>
+    async function fetchConfessions() {
+      try {
+        const response = await fetch('https://yourapi.com/confessions'); // Replace with your actual API endpoint
+        const confessions = await response.json();
+        loadConfessions(confessions);
+      } catch (error) {
+        console.error('No confessions to show.', error);
+      }
+    }
+
+    function loadConfessions(confessions) {
+      const confessionsList = document.getElementById('confessionsList');
+      confessions.forEach(confession => {
+        const confessionElement = document.createElement('div');
+        confessionElement.className = 'confession';
+        confessionElement.innerHTML = `
+          <p><strong>To:</strong> ${confession.to}</p>
+          <p>${confession.text}</p>
+          <p>${confession.viewed ? 'Viewed' : 'Not Viewed'}</p>
+        `;
+        confessionsList.appendChild(confessionElement);
+      });
+    }
+
+    window.onload = fetchConfessions;
+  </script>
+</body>
+</html>

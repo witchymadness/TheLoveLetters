@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Confession Posted</title>
+  <link rel="stylesheet" href="style2.css">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2&family=Pacifico&family=Satisfy&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Confession Posted!</h1>
+    </header>
+    <div class="entry-box">
+      <p>Your Confession has been posted successfully!</p>
+      <div id="qrcode"></div>
+      <p><a id="confessionLink" href="#">Your Confession Link</a></p>
+      <button onclick="copyToClipboard()">Copy URL to Clipboard</button>
+      <button onclick="exitToWall()">Exit to Confessions Wall</button>
+    </div>
+  </div>
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const uniqueId = urlParams.get('id');
+    const to = urlParams.get('to');
+    const text = urlParams.get('text');
+    const notify = urlParams.get('notify') === 'true';
+    const confessionUrl = `https://yourwebsite.com/confession/${uniqueId}?notify=${notify}`; // Replace with your actual URL
+    document.getElementById('confessionLink').href = confessionUrl;
+    document.getElementById('confessionLink').textContent = confessionUrl;
+
+    const qrcode = new QRCode(document.getElementById("qrcode"), {
+      text: confessionUrl,
+      width: 128,
+      height: 128,
+      colorDark: "#6a4c9c", // Medium purple color
+      colorLight: "transparent" // Transparent background
+    });
+
+    function copyToClipboard() {
+      const tempInput = document.createElement('input');
+      tempInput.value = confessionUrl;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      document.execCommand('copy');
+      document.body.removeChild(tempInput);
+      alert('URL copied to clipboard!');
+    }
+
+    function exitToWall() {
+      window.location.href = 'wall.html';
+    }
+  </script>
+</body>
+</html>
