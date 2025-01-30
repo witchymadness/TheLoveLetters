@@ -9,7 +9,7 @@ async function submitConfession() {
   }
 
   try {
-    const response = await fetch('https://the-love-letters.vercel.app/api/confessions', {
+    const response = await fetch('https://witchymadness.github.io/TheLoveLetters/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ to, message })
@@ -31,7 +31,7 @@ async function fetchConfessions() {
   confessionsList.innerHTML = '<p>Loading confessions...</p>';
 
   try {
-    const response = await fetch('https://the-love-letters.vercel.app/api/confessions');
+    const response = await fetch('https://witchymadness.github.io/TheLoveLetters/');
     if (!response.ok) throw new Error("Failed to fetch confessions");
 
     const confessions = await response.json();
