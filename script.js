@@ -11,7 +11,7 @@ async function submitConfession() {
 
   try {
     // Send the confession to the backend if everything is okay
-    const response = await fetch('https://the-love-letters.vercel.app/api/confessions', {
+    const response = await fetch('https://the-love-letters.vercel.app/api/server.js', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ to, message })

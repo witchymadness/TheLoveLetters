@@ -16,7 +16,7 @@
     <div class="entry-box">
       <p>Your Confession has been posted successfully!</p>
       <div id="qrcode"></div>
-      <p>Share this link: <a id="confessionLink" href="#">Your Confession Link</a></p>
+      <p><a id="confessionLink" href="#">Your Confession Link</a></p>
       <button onclick="copyToClipboard()">Copy URL to Clipboard</button>
       <button onclick="exitToWall()">Exit to Confessions Wall</button>
     </div>
@@ -27,7 +27,7 @@
     const to = urlParams.get('to');
     const text = urlParams.get('text');
     const notify = urlParams.get('notify') === 'true';
-    const confessionUrl = `https://the-love-letters.vercel.app/confession/${uniqueId}`; // Replace with your actual URL
+    const confessionUrl = `https://witchymadness.github.io/TheLoveLetters/${uniqueId}`; // Replace with your actual URL
     document.getElementById('confessionLink').href = confessionUrl;
     document.getElementById('confessionLink').textContent = confessionUrl;
 
